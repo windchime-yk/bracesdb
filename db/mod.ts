@@ -68,8 +68,8 @@ export class SimpleDB<T> {
    * @param key 検索したいObjectのkey
    * @param keyword 検索条件の文言
    */
-  find(key: keyof T, keyword: T[keyof T]) {
-    const result = this.data.filter(item => item[key] === keyword)
-    return result
+  find(key?: keyof T, keyword?: T[keyof T]) {
+    if (key && keyword) return this.data.filter(item => item[key] === keyword)
+    else return this.data
   }
 }
