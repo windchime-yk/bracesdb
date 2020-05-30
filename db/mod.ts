@@ -46,7 +46,9 @@ export class SimpleDB<T> {
    */
   add(object: T, keyword: keyof T) {
     const isDuplicate = this.data.filter(item => item[keyword] === object[keyword]).length
-    if (!isDuplicate) this.data.push(object)
+    if (isDuplicate) return
+
+    this.data.push(object)
     if (this.type === 'file') this.writeFile(JSON.stringify(this.data), this.file)
   }
 
