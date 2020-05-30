@@ -29,7 +29,7 @@ export class SimpleDB<T> {
     this.path = path
     this.file = `${path}${path?.slice(-1) === '/' ? '' : '/'}main.db`
 
-    if (this.path && !isExistFileSync(this.path)) Deno.mkdirSync(this.path)
+    if (this.path && !isExistFileSync(this.path)) Deno.mkdirSync(this.path, { recursive: true })
     if (this.path && !isExistFileSync(this.file) && this.type === 'file') {
       this.writeFile(JSON.stringify(this.data), this.file)
     }

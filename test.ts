@@ -1,4 +1,4 @@
-import { SimpleDB } from './db/mod.ts';
+import { SimpleDB } from './mod.ts';
 
 interface Test {
   _id: string,
