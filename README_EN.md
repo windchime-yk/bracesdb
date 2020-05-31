@@ -1,4 +1,6 @@
 # Deno Simple DB
+【[日本語](./README.md) / English】
+
 A simple DB based on Deno.
 
 ## Notes
