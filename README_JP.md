@@ -1,4 +1,4 @@
-# deno-simple-db
+# Deno Simple DB
 Denoベースの簡単なDB。
 
 ## 注意事項

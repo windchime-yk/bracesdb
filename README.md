@@ -1,4 +1,4 @@
-# deno-simple-db
+# Deno Simple DB
 A simple DB based on Deno.
 
 ## Notes
