@@ -1,4 +1,4 @@
-import { isExistFileSync } from 'https://github.com/windchime-yk/deno-util/raw/master/mod.ts';
+import { isExistFileSync, writeFileSync, readFileSync } from 'https://github.com/windchime-yk/deno-util/raw/master/mod.ts';
 
 /**
  * 簡単なデータベース
@@ -11,18 +11,6 @@ export class SimpleDB<T> {
   path?: string
   file: string
 
-  private writeFile(array: string, file: string) {
-    const encoder = new TextEncoder()
-    const data = encoder.encode(array)
-    Deno.writeFileSync(file, data)
-  }
-
-  private readFile(file: string) {
-    const decoder = new TextDecoder('utf-8')
-    const data = Deno.readFileSync(file)
-    return decoder.decode(data)
-  }
-
   constructor(type: 'memory' | 'file', path?: string) {
     this.data = []
     this.type = type
@@ -31,10 +19,10 @@ export class SimpleDB<T> {
 
     if (this.path && !isExistFileSync(this.path)) Deno.mkdirSync(this.path, { recursive: true })
     if (this.path && !isExistFileSync(this.file) && this.type === 'file') {
-      this.writeFile(JSON.stringify(this.data), this.file)
+      writeFileSync(JSON.stringify(this.data), this.file)
     }
     if (isExistFileSync(this.file)) {
-      const json: T[] = JSON.parse(this.readFile(this.file))
+      const json: T[] = JSON.parse(readFileSync(this.file))
       this.data = json
     }
   }
@@ -49,7 +37,7 @@ export class SimpleDB<T> {
     if (isDuplicate) return
 
     this.data.push(object)
-    if (this.type === 'file') this.writeFile(JSON.stringify(this.data), this.file)
+    if (this.type === 'file') writeFileSync(JSON.stringify(this.data), this.file)
   }
 
   /**
@@ -60,7 +48,7 @@ export class SimpleDB<T> {
   delete(key: keyof T, keyword: T[keyof T]) {
     const candidate = this.data.filter(item => item[key] !== keyword)
     this.data = candidate
-    if (this.type === 'file') this.writeFile(JSON.stringify(candidate), this.file)
+    if (this.type === 'file') writeFileSync(JSON.stringify(candidate), this.file)
   }
 
   /**
