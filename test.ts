@@ -9,14 +9,14 @@ interface Test {
 
 const db = new SimpleDB<Test>('file', 'db/store')
 
-db.add({
+await db.add({
   _id: 'vafevwaegva343r',
   name: 'あそまか といか',
   show: true
 }, 'name')
 
-db.delete('name', 'あそまか といか')
+await db.delete('name', 'あそまか といか')
 
-const data = db.find('name', 'あそまか といか')
+const data = await db.find('name', 'あそまか といか')
 
 console.log(data);

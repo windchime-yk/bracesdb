@@ -18,7 +18,7 @@ If the feature you need is not present in the "Upcoming features", please let us
 - [x] Delete the specified data
 - [x] Return data that matches the condition
 - [x] Save the data as a file
-- [ ] Asynchronous support
+- [x] Asynchronous support
 - [ ] Encryption of DB files
 
 ## Usage

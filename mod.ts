@@ -1,4 +1,4 @@
-import { isExistFileSync, writeFileSync, readFileSync } from 'https://github.com/windchime-yk/deno-util/raw/master/mod.ts';
+import { isExistFileSync, writeFileSync, readFileSync, writeFile } from 'https://github.com/windchime-yk/deno-util/raw/master/mod.ts';
 
 /**
  * 簡単なデータベース
@@ -32,12 +32,12 @@ export class SimpleDB<T> {
    * @param object DBに追加するObject
    * @param keyword 指定したkeyを重複防止に利用する
    */
-  add(object: T, keyword: keyof T) {
+  async add(object: T, keyword: keyof T) {
     const isDuplicate = this.data.filter(item => item[keyword] === object[keyword]).length
     if (isDuplicate) return
 
     this.data.push(object)
-    if (this.type === 'file') writeFileSync(JSON.stringify(this.data), this.file)
+    if (this.type === 'file') await writeFile(JSON.stringify(this.data), this.file)
   }
 
   /**
@@ -45,10 +45,10 @@ export class SimpleDB<T> {
    * @param key 検索したいObjectのkey
    * @param keyword 検索条件の文言
    */
-  delete(key: keyof T, keyword: T[keyof T]) {
+  async delete(key: keyof T, keyword: T[keyof T]) {
     const candidate = this.data.filter(item => item[key] !== keyword)
     this.data = candidate
-    if (this.type === 'file') writeFileSync(JSON.stringify(candidate), this.file)
+    if (this.type === 'file') await writeFile(JSON.stringify(candidate), this.file)
   }
 
   /**
@@ -56,7 +56,7 @@ export class SimpleDB<T> {
    * @param key 検索したいObjectのkey
    * @param keyword 検索条件の文言
    */
-  find(key?: keyof T, keyword?: T[keyof T]) {
+  async find(key?: keyof T, keyword?: T[keyof T]) {
     if (key && keyword) return this.data.filter(item => item[key] === keyword)
     else return this.data
   }
