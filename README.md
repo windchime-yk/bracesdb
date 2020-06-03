@@ -45,15 +45,15 @@ const test = {
 // DBにObjectを追加
 // 第1引数はDBに追加するObject
 // 第2引数は重複処理で利用するkey
-db.add(test, 'name')
+await db.add(test, 'name')
 
 // DBから該当するObjectをすべて削除
 // 第1引数はkey、第2引数はその値
-db.delete('name', 'あそまか といか')
+await db.delete('name', 'あそまか といか')
 
 // DBの検索
 // 第1引数にkeyの名前、第2引数にkeyの値を指定し、該当するObjectを返す
 // 引数なしはDBデータすべてを返す
-const data = db.find('name', 'あそまか といか')
-const dataAll = db.find()
+const data = await db.find('name', 'あそまか といか')
+const dataAll = await db.find()
 ```

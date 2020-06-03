@@ -45,17 +45,17 @@ const test = {
 // Add an Object to the DB
 // The first argument is the Object to add to the DB
 // The second argument is the key used in the duplication prevention process.
-db.add(test, 'name')
+await db.add(test, 'name')
 
 // Remove matching objects from DB.
 // The first argument is the key, and the second argument is the value of the key.
-db.delete('name', 'Asomaka Toika')
+await db.delete('name', 'Asomaka Toika')
 
 // Searching the DB
 // returns an Object that matches the conditions, with the name of the key as the first argument and the value of the key as the second argument.
 // no arguments return all DB data
-const data = db.find('name', 'Asomaka Toika')
-const dataAll = db.find()
+const data = await db.find('name', 'Asomaka Toika')
+const dataAll = await db.find()
 ```
 
 ## On translation
