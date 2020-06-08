@@ -1,4 +1,4 @@
-import { isExistFileSync, writeFileSync, readFileSync, writeFile } from 'https://github.com/windchime-yk/deno-util/raw/master/mod.ts';
+import { isExistFileSync, writeFileSync, readFileSync, writeFile } from 'https://denopkg.com/windchime-yk/deno-util/mod.ts';
 
 /**
  * 簡単なデータベース
