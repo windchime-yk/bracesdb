@@ -25,7 +25,7 @@ Denoベースの簡単なDB。
 ファイルを作成する保存形式では、ファイルの読み込みと書き込みを行なうため、実行の際に`--allow-read`と`--allow-write`をつけてください。
 
 ``` typescript
-import { SimpleDB } from 'https://denopkg.com/windchime-yk/deno-simple-db/mod.ts'
+import { SimpleDB } from 'https://github.com/windchime-yk/deno-simple-db/raw/master/mod.ts'
 
 interface DB {
   _id: string,

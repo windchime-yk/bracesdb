@@ -25,7 +25,7 @@ If the feature you need is not present in the "Upcoming features", please let us
 When creating a file, you must add `--allow-read` and `--allow-write` at execution to read and write the file.
 
 ``` typescript
-import { SimpleDB } from 'https://denopkg.com/windchime-yk/deno-simple-db/mod.ts'
+import { SimpleDB } from 'https://github.com/windchime-yk/deno-simple-db/raw/master/mod.ts'
 
 interface DB {
   _id: string,
