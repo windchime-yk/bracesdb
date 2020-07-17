@@ -6,21 +6,20 @@ import { isExistFileSync, writeFileSync, readFileSync, writeFile } from 'https:/
  * @param path DBの保存場所。指定したパスにmain.dbが保存される
  */
 export class SimpleDB<T> {
-  data: T[]
-  type: string
-  path?: string
-  file: string
+  private readonly type: string
+  private readonly path?: string
+  private readonly file: string
+  private data: T[]
 
   constructor(type: 'memory' | 'file', path?: string) {
-    this.data = []
     this.type = type
     this.path = path
     this.file = `${path}${path?.slice(-1) === '/' ? '' : '/'}main.db`
+    this.data = []
 
     if (this.path && !isExistFileSync(this.path)) Deno.mkdirSync(this.path, { recursive: true })
-    if (this.path && !isExistFileSync(this.file) && this.type === 'file') {
+    if (this.path && !isExistFileSync(this.file) && this.type === 'file')
       writeFileSync(JSON.stringify(this.data), this.file)
-    }
     if (isExistFileSync(this.file)) {
       const json: T[] = JSON.parse(readFileSync(this.file))
       this.data = json
