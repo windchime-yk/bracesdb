@@ -5,13 +5,14 @@ Denoベースの簡単なDB。
 
 ## 注意事項
 **まだ開発中のモジュールです。**  
-非同期やDB書き込み時の暗号化など、クリティカルな部分に対応していません。  
-もし必要な機能が『今後追加される機能』になければ、Issueで教えてください。
+NeDBのようなモジュールを目指し、試験的に実装しています。
+
+もし必要な機能が『今後追加される機能』になければ、[Issues](https://github.com/windchime-yk/deno-simple-db/issues/new)で教えてください。
 
 ## 特徴
 - Denoモジュール
-- JSONベース
-- 保存形式はインメモリとファイル
+- JSONベースの保存形式
+- インメモリとファイルでのデータ保存に対応
 
 ## 今後追加される機能
 - [x] データを書き込み
@@ -21,9 +22,12 @@ Denoベースの簡単なDB。
 - [x] 非同期対応
 - [ ] DBファイルの暗号化
 
-## 使い方
+## API
 ファイルを作成する保存形式では、ファイルの読み込みと書き込みを行なうため、実行の際に`--allow-read`と`--allow-write`をつけてください。
 
+### DBの作成
+第1引数はDBの種類です。`file`ならファイル、`memory`ならインメモリで管理します。  
+第2引数はDBのパス。fileの場合は書かないとエラーになります。
 ``` typescript
 import { SimpleDB } from 'https://github.com/windchime-yk/deno-simple-db/raw/master/mod.ts'
 
@@ -32,28 +36,42 @@ interface DB {
   name?: string
 }
 
-// DBの作成
-// 第1引数はDBの種類。fileならファイル、memoryならインメモリで管理する
-// 第2引数はDBのパス。fileの場合は書かないとエラーになる
 const db = new SimpleDB<DB>('file', 'db/')
+```
 
+### データの追加
+第1引数はDBに追加するObject、第2引数は重複防止処理で利用するkeyです。  
+以下の例の場合、`name`の値が重複すると追加されません。なお、現状は無警告で重複を弾きます。
+
+``` typescript
 const test = {
   _id: 'vafavrwaevawe4evarvarevga',
   name: 'あそまか といか'
 }
 
-// DBにObjectを追加
-// 第1引数はDBに追加するObject
-// 第2引数は重複処理で利用するkey
 await db.add(test, 'name')
+```
 
-// DBから該当するObjectをすべて削除
-// 第1引数はkey、第2引数はその値
+### データの削除
+DBから該当するObjectを削除します。  
+第1引数はkey、第2引数はその値です。
+``` typescript
 await db.delete('name', 'あそまか といか')
+```
 
-// DBの検索
-// 第1引数にkeyの名前、第2引数にkeyの値を指定し、該当するObjectを返す
-// 引数なしはDBデータすべてを返す
+### データの検索
+現状は、完全一致のみに対応しています。  
+第1引数にkeyの名前、第2引数にkeyの値を指定し、該当するObjectを返します。  
+引数なしは、DBデータすべてを返します。
+``` typescript
 const data = await db.find('name', 'あそまか といか')
 const dataAll = await db.find()
+```
+
+## テスト
+以下のコマンドを実行してください。
+``` bash
+$ git clone git@github.com:windchime-yk/deno-simple-db.git
+$ cd path/to/deno-simple-db
+$ deno run --allow-write --allow-read test.ts
 ```

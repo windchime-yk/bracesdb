@@ -5,8 +5,9 @@ A simple DB based on Deno.
 
 ## Notes
 **This module is a work in progress.**  
-It does not support critical parts such as asynchronous support and encryption for DB writing.  
-If the feature you need is not present in the "Upcoming features", please let us know what you want in Issue.
+We are working on a pilot implementation of a module like NeDB.
+
+If the feature you need is not present in the "Upcoming features", please let us know what you want in [Issue](https://github.com/windchime-yk/deno-simple-db/issues/new).
 
 ## Feature
 - Deno Modules
@@ -21,8 +22,12 @@ If the feature you need is not present in the "Upcoming features", please let us
 - [x] Asynchronous support
 - [ ] Encryption of DB files
 
-## Usage
+## API
 When creating a file, you must add `--allow-read` and `--allow-write` at execution to read and write the file.
+
+### Create DB
+The first argument is the DB type. If it is "file", it is a file; if it is "memory", it is managed in-memory.  
+The second argument is the DB path. If it is "file", it will be an error if it is not written.
 
 ``` typescript
 import { SimpleDB } from 'https://github.com/windchime-yk/deno-simple-db/raw/master/mod.ts'
@@ -32,30 +37,41 @@ interface DB {
   name?: string
 }
 
-// Create DB
-// The first argument is the DB type. If it is "file", it is a file; if it is "memory", it is managed in-memory.
-// The second argument is the DB path. If it is "file", it will be an error if it is not written.
 const db = new SimpleDB<DB>('file', 'db/')
+```
 
+### Add an Object to the DB
+The first argument is the Object to add to the DB.  
+The second argument is the key used in the duplication prevention process.
+``` typescript
 const test = {
   _id: 'vafavrwaevawe4evarvarevga',
   name: 'Asomaka Toika'
 }
 
-// Add an Object to the DB
-// The first argument is the Object to add to the DB
-// The second argument is the key used in the duplication prevention process.
 await db.add(test, 'name')
+```
 
-// Remove matching objects from DB.
-// The first argument is the key, and the second argument is the value of the key.
+### Remove matching objects from DB
+The first argument is the key, and the second argument is the value of the key.
+``` typescript
 await db.delete('name', 'Asomaka Toika')
+```
 
-// Searching the DB
-// returns an Object that matches the conditions, with the name of the key as the first argument and the value of the key as the second argument.
-// no arguments return all DB data
+### Searching the DB
+Returns an Object that matches the conditions, with the name of the key as the first argument and the value of the key as the second argument.  
+No arguments return all DB data.
+``` typescript
 const data = await db.find('name', 'Asomaka Toika')
 const dataAll = await db.find()
+```
+
+### Test
+Execute the following command.
+``` bash
+$ git clone git@github.com:windchime-yk/deno-simple-db.git
+$ cd path/to/deno-simple-db
+$ deno run --allow-write --allow-read test.ts
 ```
 
 ## On translation
