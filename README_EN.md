@@ -20,6 +20,7 @@ If the feature you need is not present in the "Upcoming features", please let us
 - [x] Return data that matches the condition
 - [x] Save the data as a file
 - [x] Asynchronous support
+- [ ] Partial search with regular expressions
 - [ ] Encryption of DB files
 
 ## API
