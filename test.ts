@@ -9,14 +9,45 @@ interface Test {
 
 const db = new SimpleDB<Test>('file', 'db/store')
 
-await db.add({
-  _id: 'vafevwaegva343r',
-  name: 'あそまか といか',
-  show: true
-}, 'name')
+const testList: Test[] = [
+  {
+    _id: 'vafevwaegva343r',
+    name: 'あそまか といか',
+    description: 'なぞのりっぽうたい',
+    show: true
+  },
+  {
+    _id: 'vanfieopvjiaw;gb',
+    name: '桃太郎',
+    description: 'オニスレイヤー',
+    show: false
+  },
+  {
+    _id: 'fbhrjkbnredjgekf7ehr',
+    name: '金太郎',
+    description: '熊と相撲した',
+    show: true
+  },
+  {
+    _id: 'jgrgganeaogr333ee3re',
+    name: '浦島太郎',
+    description: '置いていかれた人',
+    show: false
+  },
+]
 
-await db.delete('name', 'あそまか といか')
+for (const item of testList) {
+  await db.add({
+    _id: item._id,
+    name: item.name,
+    description: item.description,
+    show: item.show
+  }, 'name')
+}
+
+await db.delete('name', '金太郎')
 
 const data = await db.find('name', 'あそまか といか')
+const dataAll = await db.find()
 
-console.log(data);
+console.log({data, dataAll})
