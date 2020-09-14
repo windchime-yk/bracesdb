@@ -21,7 +21,6 @@ If the feature you need is not present in the "Upcoming features", please let us
 - [x] Save the data as a file
 - [x] Asynchronous support
 - [ ] Partial search with regular expressions
-- [ ] Encryption of DB files
 
 ## API
 When creating a file, you must add `--allow-read` and `--allow-write` at execution to read and write the file.
