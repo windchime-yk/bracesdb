@@ -73,5 +73,9 @@ const dataAll = await db.find()
 ``` bash
 $ git clone git@github.com:windchime-yk/deno-simple-db.git
 $ cd path/to/deno-simple-db
+
+# Denonがない場合
 $ deno run --allow-write --allow-read test.ts
+# Denonがある場合
+$ denon test
 ```

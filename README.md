@@ -71,7 +71,11 @@ Execute the following command.
 ``` bash
 $ git clone git@github.com:windchime-yk/deno-simple-db.git
 $ cd path/to/deno-simple-db
+
+# If there is no Denon
 $ deno run --allow-write --allow-read test.ts
+# If you have a Denon
+$ denon test
 ```
 
 ## On translation
