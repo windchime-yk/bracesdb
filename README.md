@@ -1,4 +1,4 @@
-# Deno Simple DB
+# Deno JSON DB
 【[日本語](./README_JP.md) / English】
 
 A simple DB based on Deno.
