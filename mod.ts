@@ -1,5 +1,30 @@
 import { isExistFileSync, writeFileSync, readFileSync, writeFile } from 'https://github.com/windchime-yk/deno-util/raw/master/mod.ts';
 
+export type JsonDBOption = {
+  /** 
+   * Save type.
+   * 
+   * If `memory` is in-memory.  
+   * If `file` is generate file
+   */
+  type: 'memory' | 'file',
+  /**
+   * Folder path.  
+   * It is generated in the project root by default.  
+   * If the type is `memory`, you don't need it.
+   * 
+   * ex. db/store/
+   */
+  folder?: string,
+  /**
+   * File Name.  
+   * Saved `{filename}.db` .  
+   * The default name is `main` .  
+   * If the type is `memory`, you don't need it.
+   */
+  filename?: string
+}
+
 /**
  * 簡単なデータベース
  * @param type DBの保存形式。インメモリならmemory、ファイルならfile
@@ -7,18 +32,20 @@ import { isExistFileSync, writeFileSync, readFileSync, writeFile } from 'https:/
  */
 export class SimpleDB<T> {
   private readonly type: string
-  private readonly path?: string
+  private readonly folder?: string
   private readonly file: string
   private data: T[]
 
-  constructor(type: 'memory' | 'file', path?: string) {
+  constructor(option: JsonDBOption) {
+    const { type, folder = './', filename = 'main' } = option
+
     this.type = type
-    this.path = path
-    this.file = `${path}${path?.slice(-1) === '/' ? '' : '/'}main.db`
+    this.folder = folder
+    this.file = `${folder}${folder?.slice(-1) === '/' ? '' : '/'}${filename}.db`
     this.data = []
 
-    if (this.path && !isExistFileSync(this.path)) Deno.mkdirSync(this.path, { recursive: true })
-    if (this.path && !isExistFileSync(this.file) && this.type === 'file')
+    if (this.folder && !isExistFileSync(this.folder)) Deno.mkdirSync(this.folder, { recursive: true })
+    if (this.folder && !isExistFileSync(this.file) && this.type === 'file')
       writeFileSync(JSON.stringify(this.data), this.file)
     if (isExistFileSync(this.file)) {
       const json: T[] = JSON.parse(readFileSync(this.file))

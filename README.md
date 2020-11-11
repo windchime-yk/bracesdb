@@ -37,7 +37,10 @@ interface DB {
   name?: string
 }
 
-const db = new SimpleDB<DB>('file', 'db/')
+const db = new SimpleDB<DB>({
+  type: 'file',
+  folder: './db/',
+})
 ```
 
 ### Add an Object to the DB

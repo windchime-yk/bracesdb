@@ -8,7 +8,11 @@ interface Test {
   show: boolean
 }
 
-const db = new SimpleDB<Test>('file', 'db/store')
+const db = new SimpleDB<Test>({
+  type: 'file',
+  folder: './db/store',
+  filename: 'test'
+})
 
 const generateUuid = () => v4.generate()
 
