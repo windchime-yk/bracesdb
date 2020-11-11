@@ -1,3 +1,4 @@
+import { v4 } from 'https://deno.land/std@0.77.0/uuid/mod.ts';
 import { SimpleDB } from './mod.ts';
 
 interface Test {
@@ -9,27 +10,29 @@ interface Test {
 
 const db = new SimpleDB<Test>('file', 'db/store')
 
+const generateUuid = () => v4.generate()
+
 const testList: Test[] = [
   {
-    _id: 'vafevwaegva343r',
+    _id: generateUuid(),
     name: 'あそまか といか',
     description: 'なぞのりっぽうたい',
     show: true
   },
   {
-    _id: 'vanfieopvjiaw;gb',
+    _id: generateUuid(),
     name: '桃太郎',
     description: 'オニスレイヤー',
     show: false
   },
   {
-    _id: 'fbhrjkbnredjgekf7ehr',
+    _id: generateUuid(),
     name: '金太郎',
     description: '熊と相撲した',
     show: true
   },
   {
-    _id: 'jgrgganeaogr333ee3re',
+    _id: generateUuid(),
     name: '浦島太郎',
     description: '置いていかれた人',
     show: false

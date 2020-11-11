@@ -44,8 +44,10 @@ const db = new SimpleDB<DB>('file', 'db/')
 以下の例の場合、`name`の値が重複すると追加されません。なお、現状は無警告で重複を弾きます。
 
 ``` typescript
+import { v4 } from 'https://deno.land/std@0.77.0/uuid/mod.ts';
+
 const test = {
-  _id: 'vafavrwaevawe4evarvarevga',
+  _id: v4.generate(),
   name: 'あそまか といか'
 }
 

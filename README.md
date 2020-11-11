@@ -44,8 +44,10 @@ const db = new SimpleDB<DB>('file', 'db/')
 The first argument is the Object to add to the DB.  
 The second argument is the key used in the duplication prevention process.
 ``` typescript
+import { v4 } from 'https://deno.land/std@0.77.0/uuid/mod.ts';
+
 const test = {
-  _id: 'vafavrwaevawe4evarvarevga',
+  _id: v4.generate(),
   name: 'Asomaka Toika'
 }
 
