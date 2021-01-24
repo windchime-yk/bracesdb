@@ -30,7 +30,7 @@ export type JsonDBOption = {
  * @param type DBの保存形式。インメモリならmemory、ファイルならfile
  * @param path DBの保存場所。指定したパスにmain.dbが保存される
  */
-export class SimpleDB<T> {
+export class JsonDB<T> {
   private readonly type: string
   private readonly folder?: string
   private readonly file: string
@@ -82,8 +82,9 @@ export class SimpleDB<T> {
    * @param key 検索したいObjectのkey
    * @param keyword 検索条件の文言
    */
-  async find(key?: keyof T, keyword?: T[keyof T]) {
-    if (key && keyword) return this.data.filter(item => item[key] === keyword)
+  async find(key?: keyof T, keyword?: T[keyof T] | RegExp) {
+    if (key && keyword instanceof RegExp) return this.data.filter(item => keyword.test(`${item[key]}`))
+    else if (key && keyword) return this.data.filter(item => item[key] === keyword)
     else return this.data
   }
 }

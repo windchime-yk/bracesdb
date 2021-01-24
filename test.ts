@@ -1,5 +1,5 @@
 import { v4 } from 'https://deno.land/std@0.77.0/uuid/mod.ts';
-import { SimpleDB } from './mod.ts';
+import { JsonDB } from './mod.ts';
 
 interface Test {
   _id: string,
@@ -8,7 +8,7 @@ interface Test {
   show: boolean
 }
 
-const db = new SimpleDB<Test>({
+const db = new JsonDB<Test>({
   type: 'file',
   folder: './db/store',
   filename: 'test'

@@ -7,7 +7,7 @@ A simple DB based on Deno.
 **This module is a work in progress.**  
 We are working on a pilot implementation of a module like NeDB.
 
-If the feature you need is not present in the "Upcoming features", please let us know what you want in [Issue](https://github.com/windchime-yk/deno-simple-db/issues/new).
+If the feature you need is not present in the "Upcoming features", please let us know what you want in [Issue](https://github.com/windchime-yk/deno-json-db/issues/new).
 
 ## Feature
 - Deno Modules
@@ -30,14 +30,14 @@ The first argument is the DB type. If it is "file", it is a file; if it is "memo
 The second argument is the DB path. If it is "file", it will be an error if it is not written.
 
 ``` typescript
-import { SimpleDB } from 'https://github.com/windchime-yk/deno-simple-db/raw/master/mod.ts'
+import { JsonDB } from 'https://github.com/windchime-yk/deno-json-db/raw/master/mod.ts'
 
 interface DB {
   _id: string,
   name?: string
 }
 
-const db = new SimpleDB<DB>({
+const db = new JsonDB<DB>({
   type: 'file',
   folder: './db/',
 })
@@ -74,8 +74,8 @@ const dataAll = await db.find()
 ### Test
 Execute the following command.
 ``` bash
-$ git clone git@github.com:windchime-yk/deno-simple-db.git
-$ cd path/to/deno-simple-db
+$ git clone git@github.com:windchime-yk/deno-json-db.git
+$ cd path/to/deno-json-db
 
 # If there is no Denon
 $ deno run --allow-write --allow-read test.ts
