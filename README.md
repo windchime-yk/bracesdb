@@ -1,7 +1,7 @@
 # Deno JSON DB
 【[日本語](./README_JP.md) / English】
 
-A simple DB based on Deno.
+DB module in JSON format created by Deno.
 
 ## Notes
 **This module is a work in progress.**  
@@ -20,27 +20,29 @@ If the feature you need is not present in the "Upcoming features", please let us
 - [x] Return data that matches the condition
 - [x] Save the data as a file
 - [x] Asynchronous support
-- [ ] Partial search with regular expressions
+- [x] Partial search with regular expressions
 
 ## API
 When creating a file, you must add `--allow-read` and `--allow-write` at execution to read and write the file.
 
 ### Create DB
-The first argument is the DB type. If it is "file", it is a file; if it is "memory", it is managed in-memory.  
-The second argument is the DB path. If it is "file", it will be an error if it is not written.
+`type` is the DB type. If it is "file", it is a file; if it is "memory", it is managed in-memory.  
+`folder` is the DB path. Default path is project root.  
+`filename` is the DB name. Default name is `main`.
 
 ``` typescript
-import { JsonDB } from 'https://github.com/windchime-yk/deno-json-db/raw/master/mod.ts'
+import { JsonDB } from "https://github.com/windchime-yk/deno-json-db/raw/master/mod.ts";
 
 interface DB {
-  _id: string,
-  name?: string
+  name?: string;
+  description?: string;
 }
 
 const db = new JsonDB<DB>({
-  type: 'file',
-  folder: './db/',
-})
+  type: "file",
+  folder: "./db/",
+  filename: "test",
+});
 ```
 
 ### Add an Object to the DB
@@ -48,25 +50,30 @@ The first argument is the Object to add to the DB.
 The second argument is the key used in the duplication prevention process.
 ``` typescript
 const test = {
-  name: 'Toika Asomaka',
-  description: 'A name that just popped into my head',
-}
+  name: "Toika Asomaka",
+  description: "A name that just popped into my head",
+};
 
-await db.add(test, 'name')
+await db.add(test, "name");
 ```
 
 ### Remove matching objects from DB
 The first argument is the key, and the second argument is the value of the key.
 ``` typescript
-await db.delete('name', 'Toika Asomaka')
+await db.delete("name", "Toika Asomaka");
 ```
 
 ### Searching the DB
+Perfect match and partial match supported.  
 Returns an Object that matches the conditions, with the name of the key as the first argument and the value of the key as the second argument.  
 No arguments return all DB data.
 ``` typescript
-const data = await db.find('name', 'Toika Asomaka')
-const dataAll = await db.find()
+// Perfect match
+const data = await db.find("name", "Toika Asomaka");
+// Partial match
+const dataPartial = await db.find("name", /Toika/);
+// All DB data
+const dataAll = await db.find();
 ```
 
 ### Test

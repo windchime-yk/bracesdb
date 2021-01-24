@@ -25,11 +25,6 @@ export type JsonDBOption = {
   filename?: string
 }
 
-/**
- * 簡単なデータベース
- * @param type DBの保存形式。インメモリならmemory、ファイルならfile
- * @param path DBの保存場所。指定したパスにmain.dbが保存される
- */
 export class JsonDB<T> {
   private readonly type: string
   private readonly folder?: string
@@ -54,9 +49,9 @@ export class JsonDB<T> {
   }
 
   /**
-   * DBにObjectを追加する
-   * @param object DBに追加するObject
-   * @param keyword 指定したkeyを重複防止に利用する
+   * Add an Object to the DB
+   * @param object Object to be added to the DB
+   * @param keyword Use the specified key to prevent duplication
    */
   async add(object: T, keyword: keyof T) {
     const isDuplicate = this.data.filter(item => item[keyword] === object[keyword]).length
@@ -67,9 +62,9 @@ export class JsonDB<T> {
   }
 
   /**
-   * 条件に該当するすべてのObjectをDBから削除する
-   * @param key 検索したいObjectのkey
-   * @param keyword 検索条件の文言
+   * Remove matching objects from DB
+   * @param key The key of the Object you want to search
+   * @param keyword Wording of search conditions
    */
   async delete(key: keyof T, keyword: T[keyof T]) {
     const candidate = this.data.filter(item => item[key] !== keyword)
@@ -78,9 +73,9 @@ export class JsonDB<T> {
   }
 
   /**
-   * 条件に該当するすべてのObjectをDBから返す
-   * @param key 検索したいObjectのkey
-   * @param keyword 検索条件の文言
+   * Searching the DB
+   * @param key The key of the Object you want to search
+   * @param keyword Wording of search conditions
    */
   async find(key?: keyof T, keyword?: T[keyof T] | RegExp) {
     if (key && keyword instanceof RegExp) return this.data.filter(item => keyword.test(`${item[key]}`))
