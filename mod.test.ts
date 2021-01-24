@@ -7,14 +7,6 @@ interface Test {
   show: boolean;
 }
 
-const folder = "./db/store";
-const filename = "test";
-const db = new JsonDB<Test>({
-  type: "file",
-  folder,
-  filename,
-});
-
 const dataList: Test[] = [
   {
     name: "Toika Asomaka",
@@ -38,7 +30,9 @@ const dataList: Test[] = [
   },
 ];
 
-const addDb = async (): Promise<void> => {
+const folder = "./db/store";
+const filename = "test";
+const addDb = async (db: JsonDB<Test>): Promise<void> => {
   for (const item of dataList) {
     await db.add(
       {
@@ -58,7 +52,12 @@ Deno.test(
   "Add item",
   async (): Promise<void> => {
     try {
-      await addDb();
+      const db = new JsonDB<Test>({
+        type: "file",
+        folder,
+        filename,
+      });
+      await addDb(db);
       assertEquals(await db.find(), dataList);
     } finally {
       await deleteDbFile();
@@ -70,7 +69,12 @@ Deno.test(
   "Delete item",
   async (): Promise<void> => {
     try {
-      await addDb();
+      const db = new JsonDB<Test>({
+        type: "file",
+        folder,
+        filename,
+      });
+      await addDb(db);
       await db.delete("name", "Kintaro");
       const dataDeleteList = dataList.filter((item) => item.name !== "Kintaro");
       assertEquals(await db.find(), dataDeleteList);
@@ -84,9 +88,37 @@ Deno.test(
   "Find item",
   async (): Promise<void> => {
     try {
-      await addDb();
-      const data = await db.find("name", "Kintaro")
+      const db = new JsonDB<Test>({
+        type: "file",
+        folder,
+        filename,
+      });
+      await addDb(db);
+      const data = await db.find("name", "Kintaro");
       const dataFindList = dataList.filter((item) => item.name === "Kintaro");
+      assertEquals(data, dataFindList);
+    } finally {
+      await deleteDbFile();
+    }
+  }
+);
+
+Deno.test(
+  "Partial find item",
+  async (): Promise<void> => {
+    try {
+      const db = new JsonDB<Test>({
+        type: "file",
+        folder,
+        filename,
+      });
+      await addDb(db);
+      const data = await db.find("name", /taro/);
+      const dataFindList = dataList.filter((item) =>
+        /taro/.test(item.name || "")
+      );
+      console.log(data);
+      console.log(dataFindList);
       assertEquals(data, dataFindList);
     } finally {
       await deleteDbFile();
