@@ -47,11 +47,9 @@ const db = new JsonDB<DB>({
 The first argument is the Object to add to the DB.  
 The second argument is the key used in the duplication prevention process.
 ``` typescript
-import { v4 } from 'https://deno.land/std@0.77.0/uuid/mod.ts';
-
 const test = {
-  _id: v4.generate(),
-  name: 'Asomaka Toika'
+  name: 'Toika Asomaka',
+  description: 'A name that just popped into my head',
 }
 
 await db.add(test, 'name')
@@ -60,14 +58,14 @@ await db.add(test, 'name')
 ### Remove matching objects from DB
 The first argument is the key, and the second argument is the value of the key.
 ``` typescript
-await db.delete('name', 'Asomaka Toika')
+await db.delete('name', 'Toika Asomaka')
 ```
 
 ### Searching the DB
 Returns an Object that matches the conditions, with the name of the key as the first argument and the value of the key as the second argument.  
 No arguments return all DB data.
 ``` typescript
-const data = await db.find('name', 'Asomaka Toika')
+const data = await db.find('name', 'Toika Asomaka')
 const dataAll = await db.find()
 ```
 
@@ -78,7 +76,7 @@ $ git clone git@github.com:windchime-yk/deno-json-db.git
 $ cd path/to/deno-json-db
 
 # If there is no Denon
-$ deno run --allow-write --allow-read test.ts
+$ deno test --allow-write --allow-read
 # If you have a Denon
 $ denon test
 ```

@@ -83,8 +83,7 @@ export class JsonDB<T> {
    * @param keyword 検索条件の文言
    */
   async find(key?: keyof T, keyword?: T[keyof T] | RegExp) {
-    if (key && keyword instanceof RegExp) return this.data.filter(item => keyword.test(`${item[key]}`))
-    else if (key && keyword) return this.data.filter(item => item[key] === keyword)
+    if (key && keyword) return this.data.filter(item => item[key] === keyword)
     else return this.data
   }
 }
