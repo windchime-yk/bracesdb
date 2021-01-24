@@ -47,11 +47,9 @@ const db = new JsonDB<DB>({
 以下の例の場合、`name`の値が重複すると追加されません。なお、現状は無警告で重複を弾きます。
 
 ``` typescript
-import { v4 } from 'https://deno.land/std@0.77.0/uuid/mod.ts';
-
 const test = {
-  _id: v4.generate(),
-  name: 'あそまか といか'
+  name: 'あそまか といか',
+  description: 'ふと思い浮かんだ名前',
 }
 
 await db.add(test, 'name')
@@ -80,7 +78,7 @@ $ git clone git@github.com:windchime-yk/deno-json-db.git
 $ cd path/to/deno-json-db
 
 # Denonがない場合
-$ deno run --allow-write --allow-read test.ts
+$ deno test --allow-write --allow-read
 # Denonがある場合
 $ denon test
 ```
