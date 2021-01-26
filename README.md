@@ -1,13 +1,10 @@
-# Deno JSON DB
+# BracesDB
 【[日本語](./README_JP.md) / English】
 
-DB module in JSON format created by Deno.
+DB module in JSON format created with Deno.
 
 ## Notes
-**This module is a work in progress.**  
-We are working on a pilot implementation of a module like NeDB.
-
-If the feature you need is not present in the "Upcoming features", please let us know what you want in [Issue](https://github.com/windchime-yk/deno-json-db/issues/new).
+**This module does not support encryption. Do not use it to store important data.**
 
 ## Feature
 - Deno Modules
@@ -22,6 +19,8 @@ If the feature you need is not present in the "Upcoming features", please let us
 - [x] Asynchronous support
 - [x] Partial search with regular expressions
 
+If you don't see a feature you think you need, please let us know what you want in [Issue](https://github.com/windchime-yk/bracesdb/issues/new). It will be used as a reference for implementation.
+
 ## API
 When creating a file, you must add `--allow-read` and `--allow-write` at execution to read and write the file.
 
@@ -31,14 +30,14 @@ When creating a file, you must add `--allow-read` and `--allow-write` at executi
 `filename` is the DB name. Default name is `main`.
 
 ``` typescript
-import { JsonDB } from "https://github.com/windchime-yk/deno-json-db/raw/master/mod.ts";
+import { BracesDB } from "https://deno.land/x/bracesdb/mod.ts";
 
 interface DB {
   name?: string;
   description?: string;
 }
 
-const db = new JsonDB<DB>({
+const db = new BracesDB<DB>({
   type: "file",
   folder: "./db/",
   filename: "test",
@@ -79,8 +78,8 @@ const dataAll = await db.find();
 ### Test
 Execute the following command.
 ``` bash
-$ git clone git@github.com:windchime-yk/deno-json-db.git
-$ cd path/to/deno-json-db
+$ git clone git@github.com:windchime-yk/bracesdb.git
+$ cd path/to/bracesdb
 
 # If there is no Denon
 $ deno test --allow-write --allow-read

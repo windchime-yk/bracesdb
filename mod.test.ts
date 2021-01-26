@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { JsonDB } from "./mod.ts";
+import { BracesDB } from "./mod.ts";
 
 interface Test {
   name?: string;
@@ -32,7 +32,7 @@ const dataList: Test[] = [
 
 const folder = "./db/store";
 const filename = "test";
-const addDb = async (db: JsonDB<Test>): Promise<void> => {
+const addDb = async (db: BracesDB<Test>): Promise<void> => {
   for (const item of dataList) {
     await db.add(
       {
@@ -52,7 +52,7 @@ Deno.test(
   "Add item",
   async (): Promise<void> => {
     try {
-      const db = new JsonDB<Test>({
+      const db = new BracesDB<Test>({
         type: "file",
         folder,
         filename,
@@ -69,7 +69,7 @@ Deno.test(
   "Delete item",
   async (): Promise<void> => {
     try {
-      const db = new JsonDB<Test>({
+      const db = new BracesDB<Test>({
         type: "file",
         folder,
         filename,
@@ -88,7 +88,7 @@ Deno.test(
   "Find item",
   async (): Promise<void> => {
     try {
-      const db = new JsonDB<Test>({
+      const db = new BracesDB<Test>({
         type: "file",
         folder,
         filename,
@@ -107,7 +107,7 @@ Deno.test(
   "Partial find item",
   async (): Promise<void> => {
     try {
-      const db = new JsonDB<Test>({
+      const db = new BracesDB<Test>({
         type: "file",
         folder,
         filename,
