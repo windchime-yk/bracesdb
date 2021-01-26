@@ -1,6 +1,6 @@
 import { isExistFileSync, writeFileSync, readFileSync, writeFile } from 'https://github.com/windchime-yk/deno-util/raw/master/mod.ts';
 
-export type JsonDBOption = {
+export type BracesDBOption = {
   /** 
    * Save type.
    * 
@@ -25,13 +25,13 @@ export type JsonDBOption = {
   filename?: string
 }
 
-export class JsonDB<T> {
+export class BracesDB<T> {
   private readonly type: string
   private readonly folder?: string
   private readonly file: string
   private data: T[]
 
-  constructor(option: JsonDBOption) {
+  constructor(option: BracesDBOption) {
     const { type, folder = './', filename = 'main' } = option
 
     this.type = type

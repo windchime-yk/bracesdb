@@ -1,13 +1,10 @@
-# Deno JSON DB
+# BracesDB
 【日本語 / [English](./README.md)】
 
 Denoで作られたJSON形式のDBモジュール。
 
 ## 注意事項
-**まだ開発中のモジュールです。**  
-NeDBのようなモジュールを目指し、試験的に実装しています。
-
-もし必要な機能が『今後追加される機能』になければ、[Issues](https://github.com/windchime-yk/deno-json-db/issues/new)で教えてください。
+**このモジュールは暗号化に対応していません。重要なデータの保存には用いないでください。**
 
 ## 特徴
 - Denoモジュール
@@ -22,6 +19,8 @@ NeDBのようなモジュールを目指し、試験的に実装しています�
 - [x] 非同期対応
 - [x] 正規表現による部分検索
 
+もし必要だと思う機能がなければ、[Issues](https://github.com/windchime-yk/bracesdb/issues/new)で教えてください。参考にします。
+
 ## API
 ファイルを作成する保存形式では、ファイルの読み込みと書き込みを行なうため、実行の際に`--allow-read`と`--allow-write`をつけてください。
 
@@ -30,14 +29,14 @@ NeDBのようなモジュールを目指し、試験的に実装しています�
 `folder`はDBファイルを格納するフォルダのパスです。デフォルトではプロジェクトルートに生成されます。  
 `filename`はDBファイルの名前です。デフォルトは`main`です。
 ``` typescript
-import { JsonDB } from "https://github.com/windchime-yk/deno-json-db/raw/master/mod.ts";
+import { BracesDB } from "https://deno.land/x/bracesdb/mod.ts";
 
 interface DB {
   name?: string;
   description?: string;
 }
 
-const db = new JsonDB<DB>({
+const db = new BracesDB<DB>({
   type: "file",
   folder: "./db/",
   filename: "test",
@@ -79,8 +78,8 @@ const dataAll = await db.find();
 ## テスト
 以下のコマンドを実行してください。
 ``` bash
-$ git clone git@github.com:windchime-yk/deno-json-db.git
-$ cd path/to/deno-json-db
+$ git clone git@github.com:windchime-yk/bracesdb.git
+$ cd path/to/bracesdb
 
 # Denonがない場合
 $ deno test --allow-write --allow-read
