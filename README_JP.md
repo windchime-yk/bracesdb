@@ -68,11 +68,11 @@ await db.delete("name", "あそまか といか");
 引数なしは、DBデータすべてを返します。
 ``` typescript
 // 完全一致
-const data = await db.find("name", "あそまか といか");
+const data = db.find("name", "あそまか といか");
 // 部分検索
-const dataPartial = await db.find("name", /といか/);
+const dataPartial = db.find("name", /といか/);
 // すべてのDBデータ
-const dataAll = await db.find();
+const dataAll = db.find();
 ```
 
 ## テスト

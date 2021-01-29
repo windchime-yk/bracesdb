@@ -58,7 +58,7 @@ Deno.test(
         filename,
       });
       await addDb(db);
-      assertEquals(await db.find(), dataList);
+      assertEquals(db.find(), dataList);
     } finally {
       await deleteDbFile();
     }
@@ -77,7 +77,7 @@ Deno.test(
       await addDb(db);
       await db.delete("name", "Kintaro");
       const dataDeleteList = dataList.filter((item) => item.name !== "Kintaro");
-      assertEquals(await db.find(), dataDeleteList);
+      assertEquals(db.find(), dataDeleteList);
     } finally {
       await deleteDbFile();
     }
@@ -94,7 +94,7 @@ Deno.test(
         filename,
       });
       await addDb(db);
-      const data = await db.find("name", "Kintaro");
+      const data = db.find("name", "Kintaro");
       const dataFindList = dataList.filter((item) => item.name === "Kintaro");
       assertEquals(data, dataFindList);
     } finally {
@@ -113,7 +113,7 @@ Deno.test(
         filename,
       });
       await addDb(db);
-      const data = await db.find("name", /taro/);
+      const data = db.find("name", /taro/);
       const dataFindList = dataList.filter((item) =>
         /taro/.test(item.name || "")
       );

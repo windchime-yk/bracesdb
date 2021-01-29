@@ -77,7 +77,7 @@ export class BracesDB<T> {
    * @param key The key of the Object you want to search
    * @param keyword Wording of search conditions
    */
-  async find(key?: keyof T, keyword?: T[keyof T] | RegExp) {
+  find(key?: keyof T, keyword?: T[keyof T] | RegExp) {
     if (key && keyword instanceof RegExp) return this.data.filter(item => keyword.test(`${item[key]}`))
     else if (key && keyword) return this.data.filter(item => item[key] === keyword)
     else return this.data

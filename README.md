@@ -68,11 +68,11 @@ Returns an Object that matches the conditions, with the name of the key as the f
 No arguments return all DB data.
 ``` typescript
 // Perfect match
-const data = await db.find("name", "Toika Asomaka");
+const data = db.find("name", "Toika Asomaka");
 // Partial match
-const dataPartial = await db.find("name", /Toika/);
+const dataPartial = db.find("name", /Toika/);
 // All DB data
-const dataAll = await db.find();
+const dataAll = db.find();
 ```
 
 ### Test
