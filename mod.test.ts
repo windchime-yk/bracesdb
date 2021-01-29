@@ -117,8 +117,6 @@ Deno.test(
       const dataFindList = dataList.filter((item) =>
         /taro/.test(item.name || "")
       );
-      console.log(data);
-      console.log(dataFindList);
       assertEquals(data, dataFindList);
     } finally {
       await deleteDbFile();
