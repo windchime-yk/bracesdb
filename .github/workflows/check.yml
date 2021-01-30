@@ -19,4 +19,4 @@ jobs:
       - name: Lint
         run: deno lint --unstable
       - name: Format Check
-        run: deno fmt --check
+        run: deno fmt --check --ignore=README.md,README_JP.md,./.github/

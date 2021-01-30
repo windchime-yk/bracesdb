@@ -40,7 +40,7 @@ const addDb = async (db: BracesDB<Test>): Promise<void> => {
         description: item.description,
         show: item.show,
       },
-      "name"
+      "name",
     );
   }
 };
@@ -62,7 +62,7 @@ Deno.test(
     } finally {
       await deleteDbFile();
     }
-  }
+  },
 );
 
 Deno.test(
@@ -81,7 +81,7 @@ Deno.test(
     } finally {
       await deleteDbFile();
     }
-  }
+  },
 );
 
 Deno.test(
@@ -100,7 +100,7 @@ Deno.test(
     } finally {
       await deleteDbFile();
     }
-  }
+  },
 );
 
 Deno.test(
@@ -121,5 +121,5 @@ Deno.test(
     } finally {
       await deleteDbFile();
     }
-  }
+  },
 );
