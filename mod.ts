@@ -5,7 +5,7 @@ import {
   writeFileSync,
 } from "https://github.com/windchime-yk/deno-util/raw/v0.0.1/modules/file.ts";
 
-export type BracesDBOption = {
+export interface BracesDBOption {
   /** 
    * Save type.
    * 
