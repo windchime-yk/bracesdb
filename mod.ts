@@ -28,7 +28,7 @@ export interface BracesDBOption {
    * If the type is `memory`, you don't need it.
    */
   filename?: string;
-};
+}
 
 export class BracesDB<T> {
   private readonly type: string;
