@@ -1,4 +1,6 @@
 # BracesDB
+[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/bracesdb/mod.ts)
+
 【[日本語](./README_JP.md) / English】
 
 DB module in JSON format created with Deno.

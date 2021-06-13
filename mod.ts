@@ -3,9 +3,9 @@ import {
   readFileSync,
   writeFile,
   writeFileSync,
-} from "https://github.com/windchime-yk/deno-util/raw/master/mod.ts";
+} from "https://github.com/windchime-yk/deno-util/raw/v0.0.1/modules/file.ts";
 
-export type BracesDBOption = {
+export interface BracesDBOption {
   /** 
    * Save type.
    * 
@@ -28,7 +28,7 @@ export type BracesDBOption = {
    * If the type is `memory`, you don't need it.
    */
   filename?: string;
-};
+}
 
 export class BracesDB<T> {
   private readonly type: string;

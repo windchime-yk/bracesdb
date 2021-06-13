@@ -1,4 +1,6 @@
 # BracesDB
+[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/bracesdb/mod.ts)
+
 【日本語 / [English](./README.md)】
 
 Denoで作られたJSON形式のDBモジュール。
