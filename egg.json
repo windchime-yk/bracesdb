@@ -1,0 +1,25 @@
+{
+  "$schema": "https://x.nest.land/eggs@0.3.10/src/schema.json",
+  "name": "bracesdb",
+  "entry": "./mod.ts",
+  "description": "DB module in JSON format created with Deno.",
+  "homepage": "https://github.com/windchime-yk/bracesdb",
+  "version": "v1.0.2",
+  "releaseType": null,
+  "unstable": false,
+  "unlisted": false,
+  "files": [
+    "mod.ts",
+    "README.md",
+    "README_JP.md",
+    "LICENSE"
+  ],
+  "ignore": [
+    ".git",
+    "mod.test.ts"
+  ],
+  "checkFormat": false,
+  "checkTests": false,
+  "checkInstallation": true,
+  "check": true
+}
