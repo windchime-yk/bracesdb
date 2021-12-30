@@ -23,6 +23,22 @@ Denoで作られたJSON形式のDBモジュール。
 
 もし必要だと思う機能がなければ、[Issues](https://github.com/windchime-yk/bracesdb/issues/new)で教えてください。参考にします。
 
+## 使い方
+### deno.land/x/
+``` typescript
+import { BracesDB } from "https://deno.land/x/bracesdb@VERSION/mod.ts"
+```
+
+### x.nest.land
+``` typescript
+import { BracesDB } from "https://x.nest.land/bracesdb@VERSION/mod.ts"
+```
+
+### pax.deno.dev
+``` typescript
+import { BracesDB } from "https://pax.deno.dev/windchime-yk/bracesdb@VERSION/mod.ts"
+```
+
 ## API
 ファイルを作成する保存形式では、ファイルの読み込みと書き込みを行なうため、実行の際に`--allow-read`と`--allow-write`をつけてください。
 
@@ -31,8 +47,6 @@ Denoで作られたJSON形式のDBモジュール。
 `folder`はDBファイルを格納するフォルダのパスです。デフォルトではプロジェクトルートに生成されます。  
 `filename`はDBファイルの名前です。デフォルトは`main`です。
 ``` typescript
-import { BracesDB } from "https://deno.land/x/bracesdb/mod.ts";
-
 interface DB {
   name?: string;
   description?: string;

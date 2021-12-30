@@ -23,6 +23,22 @@ DB module in JSON format created with Deno.
 
 If you don't see a feature you think you need, please let us know what you want in [Issue](https://github.com/windchime-yk/bracesdb/issues/new). It will be used as a reference for implementation.
 
+## Usage
+### deno.land/x/
+``` typescript
+import { BracesDB } from "https://deno.land/x/bracesdb@VERSION/mod.ts"
+```
+
+### x.nest.land
+``` typescript
+import { BracesDB } from "https://x.nest.land/bracesdb@VERSION/mod.ts"
+```
+
+### pax.deno.dev
+``` typescript
+import { BracesDB } from "https://pax.deno.dev/windchime-yk/bracesdb@VERSION/mod.ts"
+```
+
 ## API
 When creating a file, you must add `--allow-read` and `--allow-write` at execution to read and write the file.
 
@@ -32,8 +48,6 @@ When creating a file, you must add `--allow-read` and `--allow-write` at executi
 `filename` is the DB name. Default name is `main`.
 
 ``` typescript
-import { BracesDB } from "https://deno.land/x/bracesdb/mod.ts";
-
 interface DB {
   name?: string;
   description?: string;
