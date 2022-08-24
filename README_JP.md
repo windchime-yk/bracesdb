@@ -21,7 +21,7 @@ Denoで作られたJSON形式のDBモジュール。
 - [x] 非同期対応
 - [x] 正規表現による部分検索
 
-もし必要だと思う機能がなければ、[Issues](https://github.com/windchime-yk/bracesdb/issues/new)で教えてください。参考にします。
+もし必要だと思う機能がなければ、[Issues](https://github.com/rwl-dev/bracesdb/issues/new)で教えてください。参考にします。
 
 ## API
 ファイルを作成する保存形式では、ファイルの読み込みと書き込みを行なうため、実行の際に`--allow-read`と`--allow-write`をつけてください。
@@ -31,7 +31,7 @@ Denoで作られたJSON形式のDBモジュール。
 `folder`はDBファイルを格納するフォルダのパスです。デフォルトではプロジェクトルートに生成されます。  
 `filename`はDBファイルの名前です。デフォルトは`main`です。
 ``` typescript
-import { BracesDB } from "https://deno.land/x/bracesdb/mod.ts";
+import { BracesDB } from "https://deno.land/x/bracesdb@<version>/mod.ts";
 
 interface DB {
   name?: string;
@@ -80,7 +80,7 @@ const dataAll = db.find();
 ## テスト
 以下のコマンドを実行してください。
 ``` bash
-$ git clone git@github.com:windchime-yk/bracesdb.git
+$ git clone https://github.com/rwl-dev/bracesdb.git
 $ cd path/to/bracesdb
 
 $ deno task test
