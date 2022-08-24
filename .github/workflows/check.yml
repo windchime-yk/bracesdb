@@ -15,8 +15,8 @@ jobs:
         with:
           deno-version: v1.x
       - name: Test
-        run: deno test --allow-write --allow-read
+        run: deno task test
       - name: Lint
-        run: deno lint --unstable
+        run: deno lint
       - name: Format Check
-        run: deno fmt --check --ignore=README.md,README_JP.md,./.github/
+        run: deno task fmt --check

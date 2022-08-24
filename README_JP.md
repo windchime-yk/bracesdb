@@ -83,8 +83,5 @@ const dataAll = db.find();
 $ git clone git@github.com:windchime-yk/bracesdb.git
 $ cd path/to/bracesdb
 
-# Denonがない場合
-$ deno test --allow-write --allow-read
-# Denonがある場合
-$ denon test
+$ deno task test
 ```

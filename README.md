@@ -83,10 +83,7 @@ Execute the following command.
 $ git clone git@github.com:windchime-yk/bracesdb.git
 $ cd path/to/bracesdb
 
-# If there is no Denon
-$ deno test --allow-write --allow-read
-# If you have a Denon
-$ denon test
+$ deno task test
 ```
 
 ## On translation

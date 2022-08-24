@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "test": "deno test --allow-write --allow-read",
+    "fmt": "deno fmt --ignore=README.md,README_JP.md,./.github/,.vscode/"
+  }
+}
