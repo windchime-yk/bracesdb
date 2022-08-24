@@ -3,7 +3,7 @@ import {
   readFileSync,
   writeFile,
   writeFileSync,
-} from "https://github.com/windchime-yk/deno-util/raw/v0.0.1/modules/file.ts";
+} from "https://pax.deno.dev/windchime-yk/deno-util@v1.6.0/file.ts";
 
 export interface BracesDBOption {
   /** 

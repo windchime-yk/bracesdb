@@ -21,7 +21,7 @@ DB module in JSON format created with Deno.
 - [x] Asynchronous support
 - [x] Partial search with regular expressions
 
-If you don't see a feature you think you need, please let us know what you want in [Issue](https://github.com/windchime-yk/bracesdb/issues/new). It will be used as a reference for implementation.
+If you don't see a feature you think you need, please let us know what you want in [Issue](https://github.com/rwl-dev/bracesdb/issues/new). It will be used as a reference for implementation.
 
 ## API
 When creating a file, you must add `--allow-read` and `--allow-write` at execution to read and write the file.
@@ -32,7 +32,7 @@ When creating a file, you must add `--allow-read` and `--allow-write` at executi
 `filename` is the DB name. Default name is `main`.
 
 ``` typescript
-import { BracesDB } from "https://deno.land/x/bracesdb/mod.ts";
+import { BracesDB } from "https://deno.land/x/bracesdb@<version>/mod.ts";
 
 interface DB {
   name?: string;
@@ -80,13 +80,10 @@ const dataAll = db.find();
 ### Test
 Execute the following command.
 ``` bash
-$ git clone git@github.com:windchime-yk/bracesdb.git
+$ git clone https://github.com/rwl-dev/bracesdb.git
 $ cd path/to/bracesdb
 
-# If there is no Denon
-$ deno test --allow-write --allow-read
-# If you have a Denon
-$ denon test
+$ deno task test
 ```
 
 ## On translation
