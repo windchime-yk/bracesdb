@@ -1,5 +1,5 @@
-import { assertEquals } from "https://deno.land/std@0.117.0/testing/asserts.ts";
-import { BracesDB } from "./mod.ts";
+import { assertEquals } from "../deps.ts";
+import { FileDB } from "../filedb.ts";
 
 interface Test {
   name?: string;
@@ -32,7 +32,7 @@ const dataList: Test[] = [
 
 const folder = "./db/store";
 const filename = "test";
-const addDb = async (db: BracesDB<Test>): Promise<void> => {
+const addDb = async (db: FileDB<Test>): Promise<void> => {
   for (const item of dataList) {
     await db.add(
       {
@@ -52,8 +52,7 @@ Deno.test(
   "Add item",
   async (): Promise<void> => {
     try {
-      const db = new BracesDB<Test>({
-        type: "file",
+      const db = new FileDB<Test>({
         folder,
         filename,
       });
@@ -69,8 +68,7 @@ Deno.test(
   "Delete item",
   async (): Promise<void> => {
     try {
-      const db = new BracesDB<Test>({
-        type: "file",
+      const db = new FileDB<Test>({
         folder,
         filename,
       });
@@ -88,8 +86,7 @@ Deno.test(
   "Find item",
   async (): Promise<void> => {
     try {
-      const db = new BracesDB<Test>({
-        type: "file",
+      const db = new FileDB<Test>({
         folder,
         filename,
       });
@@ -107,8 +104,7 @@ Deno.test(
   "Partial find item",
   async (): Promise<void> => {
     try {
-      const db = new BracesDB<Test>({
-        type: "file",
+      const db = new FileDB<Test>({
         folder,
         filename,
       });
