@@ -5,6 +5,12 @@
 
 DB module in JSON format created with Deno.
 
+## Notice
+Deno is supported Node.js and npm packages.
+
+This module was inspired [NeDB](https://github.com/louischatriot/nedb). Simple control like NeDB and all datastore unified API control. That was goal. But it was out of reach.   
+**This project is freezed.**
+
 ## Notes
 **This module does not support encryption. Do not use it to store important data.**
 
